@@ -1,4 +1,4 @@
-package cripto
+package cripto.mutable
 
 class TriviumShiftRegister(var sizeOfRegister: Int, var tap: Byte, var flipFlops: Array[FlipFlop]) {
   def size: Int = this.flipFlops.length

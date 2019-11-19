@@ -1,4 +1,4 @@
-package cripto
+package cripto.mutable
 
 class FlipFlop(var value: Byte = 0, var hasRightNeighbor: Boolean = false, var rightNeighbor: FlipFlop = null) {
   def tick(value: Byte): Unit = {

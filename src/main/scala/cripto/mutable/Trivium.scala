@@ -1,4 +1,4 @@
-package cripto
+package cripto.mutable
 
 case class Trivium(registerOne: TriviumShiftRegister = TriviumShiftRegister(93),
                    registerTwo: TriviumShiftRegister = TriviumShiftRegister(84),

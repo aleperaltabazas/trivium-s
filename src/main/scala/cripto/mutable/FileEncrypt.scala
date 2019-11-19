@@ -1,4 +1,4 @@
-package cripto
+package cripto.mutable
 
 import java.io._
 
