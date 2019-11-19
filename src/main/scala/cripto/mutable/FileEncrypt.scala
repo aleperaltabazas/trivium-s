@@ -5,7 +5,7 @@ import java.io._
 case class FileEncrypt(cipher: Trivium, reader: DataInputStream, writer: DataOutputStream) {
   def encrypt: Unit = {
     var readBytes: Int = 0
-    var buffer = new Array[Byte](FileEncrypt.maxBufferSize)
+    val buffer = new Array[Byte](FileEncrypt.maxBufferSize)
 
     do {
       readBytes = reader.read(buffer, 0, FileEncrypt.maxBufferSize)

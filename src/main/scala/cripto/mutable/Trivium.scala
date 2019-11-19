@@ -6,8 +6,8 @@ case class Trivium(registerOne: TriviumShiftRegister = TriviumShiftRegister(93),
   initializationRounds()
 
   def getKeyBites: Byte = {
-    var lowBits = 0x00
-    var highBits = 0x00
+    var lowBits: Byte = 0x00
+    var highBits: Byte = 0x00
 
     for (i <- List.range(0, 3)) {
       lowBits |= (getKeyBit << i)

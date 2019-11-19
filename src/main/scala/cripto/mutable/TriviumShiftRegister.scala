@@ -13,17 +13,11 @@ class TriviumShiftRegister(var sizeOfRegister: Int, var tap: Byte, var flipFlops
 
   def getBits(positions: Int*): Array[Byte] = {
     val result = new Array[Byte](positions.length)
-    var i = 0
-    while ( {
-      i < result.length
-    }) {
-      result(i) = flipFlops(positions(i)).getValue
 
-      {
-        i += 1;
-        i - 1
-      }
+    for (i <- List.range(0, result.length - 1)) {
+      result(i) = flipFlops(positions(i)).getValue
     }
+
     result
   }
 }
@@ -32,7 +26,7 @@ case object TriviumShiftRegister {
   def apply(sizeOfRegister: Int): TriviumShiftRegister = {
     var flipFlops: Array[FlipFlop] = new Array[FlipFlop](sizeOfRegister)
 
-    flipFlops(sizeOfRegister - 1) = new FlipFlop
+    flipFlops(sizeOfRegister - 1) = FlipFlop()
 
     var i: Int = flipFlops.length - 2
     while ( {
