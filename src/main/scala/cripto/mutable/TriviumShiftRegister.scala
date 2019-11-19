@@ -23,7 +23,7 @@ class TriviumShiftRegister(var sizeOfRegister: Int, var tap: Byte, var flipFlops
 }
 
 case object TriviumShiftRegister {
-  def apply(sizeOfRegister: Int): TriviumShiftRegister = {
+  def apply_(sizeOfRegister: Int): TriviumShiftRegister = {
     var flipFlops: Array[FlipFlop] = new Array[FlipFlop](sizeOfRegister)
 
     flipFlops(sizeOfRegister - 1) = FlipFlop()
@@ -41,5 +41,23 @@ case object TriviumShiftRegister {
     }
     val tap: Byte = 0x00
     new TriviumShiftRegister(sizeOfRegister, tap, flipFlops)
+  }
+
+  def apply(registerSize: Int): TriviumShiftRegister = {
+    val flipFlops: Array[FlipFlop] = new Array[FlipFlop](registerSize)
+
+    flipFlops(registerSize - 1) = FlipFlop()
+
+    val flipFlops_ = List.fill(registerSize)(2).foldLeft((List[FlipFlop](), FlipFlop())) {
+      (acc, _) =>
+        val flipFlop = FlipFlop(acc._2)
+        (flipFlop :: acc._1, flipFlop)
+    }._1
+
+    for (i <- 10 to 1) {
+      flipFlops(i) = FlipFlop(flipFlops(i + 1))
+    }
+
+    new TriviumShiftRegister(registerSize, 0x00, flipFlops_.toArray)
   }
 }
