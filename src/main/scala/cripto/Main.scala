@@ -11,7 +11,7 @@ case object Main {
 
     val encryption = ImmutableFileEncryption(input, output, cipher)
     val start = System.currentTimeMillis()
-    encryption.encrypt
+    encryption.encrypt()
     val diff = System.currentTimeMillis() - start
     encryption.close()
     System.out.println(s"Ciphered in $diff millis")
@@ -22,7 +22,7 @@ case object Main {
 
     val encryption = MutableFileEncryption(input, output, cipher)
     val start = System.currentTimeMillis()
-    encryption.encrypt
+    encryption.encrypt()
     val diff = System.currentTimeMillis() - start
     encryption.close()
     System.out.println(s"Ciphered in $diff millis")

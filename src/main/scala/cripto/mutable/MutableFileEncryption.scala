@@ -3,7 +3,7 @@ package cripto.mutable
 import java.io._
 
 case class MutableFileEncryption(cipher: MutableTrivium, reader: DataInputStream, writer: DataOutputStream) {
-  def encrypt: Unit = {
+  def encrypt(): Unit = {
     var readBytes: Int = 0
     val buffer = new Array[Byte](MutableFileEncryption.maxBufferSize)
 
