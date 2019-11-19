@@ -1,8 +1,8 @@
 package cripto.immutable
 
-case class ImmutableTrivium(registerOne: TriviumShiftRegister = TriviumShiftRegister(93),
-                            registerTwo: TriviumShiftRegister = TriviumShiftRegister(84),
-                            registerThree: TriviumShiftRegister = TriviumShiftRegister(111)) {
+case class ImmutableTrivium(registerOne: ImmutableShiftRegister = ImmutableShiftRegister(93),
+                            registerTwo: ImmutableShiftRegister = ImmutableShiftRegister(84),
+                            registerThree: ImmutableShiftRegister = ImmutableShiftRegister(111)) {
   def initializationRounds: ImmutableTrivium = List.range(1, 4 * 288).foldLeft(this) {
     (trivium, _) => trivium.keyBit._2
   }
@@ -62,18 +62,18 @@ case object ImmutableTrivium {
     ImmutableTrivium(registerOne, registerTwo, registerThree)
   }
 
-  private def firstRegister(key: Array[Byte]): TriviumShiftRegister = {
-    val registerOne = TriviumShiftRegister(93)
+  private def firstRegister(key: Array[Byte]): ImmutableShiftRegister = {
+    val registerOne = ImmutableShiftRegister(93)
     initRegisterWithByteArray(key, registerOne)
   }
 
-  private def secondRegister(iv: Array[Byte]): TriviumShiftRegister = {
-    val registerTwo = TriviumShiftRegister(84)
+  private def secondRegister(iv: Array[Byte]): ImmutableShiftRegister = {
+    val registerTwo = ImmutableShiftRegister(84)
     initRegisterWithByteArray(iv, registerTwo)
   }
 
-  private def thirdRegister: TriviumShiftRegister = {
-    val registerThree = TriviumShiftRegister(111)
+  private def thirdRegister: ImmutableShiftRegister = {
+    val registerThree = ImmutableShiftRegister(111)
 
     val registerThreeV2 = registerThree.loadValue(0x01).loadValue(0x01).loadValue(0x01)
 
@@ -82,7 +82,7 @@ case object ImmutableTrivium {
     }
   }
 
-  private def initRegisterWithByteArray(array: Array[Byte], register: TriviumShiftRegister): TriviumShiftRegister = array.reverse.foldLeft(register) {
+  private def initRegisterWithByteArray(array: Array[Byte], register: ImmutableShiftRegister): ImmutableShiftRegister = array.reverse.foldLeft(register) {
     (register_, b) =>
       List.range(0, 7).foldLeft(register_) {
         (_register, i) =>

@@ -1,6 +1,7 @@
-package cripto.mutable
+package cripto
 
 import cripto.immutable.{ImmutableFileEncryption, ImmutableTrivium}
+import cripto.mutable.{MutableFileEncryption, MutableTrivium}
 import cripto.utils.Utility
 
 case object Main {

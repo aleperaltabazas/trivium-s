@@ -1,8 +1,8 @@
 package cripto.mutable
 
-case class MutableTrivium(registerOne: TriviumShiftRegister = TriviumShiftRegister(93),
-                          registerTwo: TriviumShiftRegister = TriviumShiftRegister(84),
-                          registerThree: TriviumShiftRegister = TriviumShiftRegister(111)) {
+case class MutableTrivium(registerOne: MutableShiftRegister = MutableShiftRegister(93),
+                          registerTwo: MutableShiftRegister = MutableShiftRegister(84),
+                          registerThree: MutableShiftRegister = MutableShiftRegister(111)) {
   initializationRounds()
 
   def getKeyByte: Byte = {
@@ -53,9 +53,9 @@ case class MutableTrivium(registerOne: TriviumShiftRegister = TriviumShiftRegist
 
 case object MutableTrivium {
   def apply(key: Array[Byte], iv: Array[Byte]): MutableTrivium = {
-    val registerOne = TriviumShiftRegister(93)
-    val registerTwo = TriviumShiftRegister(84)
-    val registerThree = TriviumShiftRegister(111)
+    val registerOne = MutableShiftRegister(93)
+    val registerTwo = MutableShiftRegister(84)
+    val registerThree = MutableShiftRegister(111)
 
     initRegister(key, registerOne)
     initRegister(iv, registerTwo)
@@ -68,7 +68,7 @@ case object MutableTrivium {
     MutableTrivium(registerOne, registerTwo, registerThree)
   }
 
-  private def initRegister(bytes: Array[Byte], register: TriviumShiftRegister): Unit = {
+  private def initRegister(bytes: Array[Byte], register: MutableShiftRegister): Unit = {
     bytes.reverse.foreach {
       b =>
         List.range(1, 8).foreach {
