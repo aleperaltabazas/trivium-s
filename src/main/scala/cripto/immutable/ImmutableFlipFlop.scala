@@ -5,5 +5,5 @@ case class ImmutableFlipFlop(value: Byte = 0, rightNeighbor: Option[ImmutableFli
     ImmutableFlipFlop(value, rightNeighbor.map(_.tick(this.value)))
   }
 
-  def collect: List[ImmutableFlipFlop] = List(this) ++ rightNeighbor.map(_.collect).getOrElse(Nil)
+  def collect: List[ImmutableFlipFlop] = this :: rightNeighbor.map(_.collect).getOrElse(Nil)
 }

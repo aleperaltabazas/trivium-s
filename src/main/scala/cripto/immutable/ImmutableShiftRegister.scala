@@ -9,15 +9,7 @@ case class ImmutableShiftRegister(registerSize: Int, tap: Byte, flipFlops: Array
 
   def loadValue(value: Byte): ImmutableShiftRegister = copy(flipFlops = this.flipFlops(0).tick(value).collect.toArray)
 
-  def bits(positions: Int*): Array[Byte] = {
-    val result = new Array[Byte](positions.length)
-
-    for (i <- List.range(0, result.length - 1)) {
-      result(i) = flipFlops(positions(i)).value
-    }
-
-    result
-  }
+  def bits(positions: Int*): Array[Byte] = positions.map(i => flipFlops(i)).map(_.value).toArray
 }
 
 case object ImmutableShiftRegister {
