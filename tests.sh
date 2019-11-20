@@ -1,0 +1,26 @@
+#/bin/bash
+
+KEY=80000000000000000000
+IV=00000000000000000000
+
+SMALL=small
+SMALL_CIPH=small.ciph
+SMALL_DEC=small.dec
+
+LARGE=large
+LARGE_CIPH=large.ciph
+LARGE_DEC=large.dec
+
+# MUTABLE
+sbt "run $KEY $IV $SMALL $SMALL_CIPH"
+sbt "run $KEY $IV $SMALL_CIPH $SMALL_DEC"
+
+sbt "run $KEY $IV $LARGE $LARGE_CIPH"
+sbt "run $KEY $IV $LARGE_CIPH $LARGE_DEC"
+
+# IMMUTABLE
+sbt "run -i $KEY $IV $SMALL $SMALL_CIPH"
+sbt "run -i $KEY $IV $SMALL_CIPH $SMALL_DEC"
+
+sbt "run -i $KEY $IV $LARGE $LARGE_CIPH"
+sbt "run -i $KEY $IV $LARGE_CIPH $LARGE_DEC"
