@@ -7,10 +7,10 @@ import cripto.utils.Utility
 case object Main {
 
   def runImmutable(key: Array[Byte], iv: Array[Byte], input: String, output: String): Unit = {
+    val start = System.currentTimeMillis()
     val cipher = ImmutableTrivium(key, iv)
 
     val encryption = ImmutableFileEncryption(input, output, cipher)
-    val start = System.currentTimeMillis()
     encryption.encrypt()
     val diff = System.currentTimeMillis() - start
     encryption.close()
@@ -18,10 +18,10 @@ case object Main {
   }
 
   def runMutable(key: Array[Byte], iv: Array[Byte], input: String, output: String): Unit = {
+    val start = System.currentTimeMillis()
     val cipher = MutableTrivium(key, iv)
 
     val encryption = MutableFileEncryption(input, output, cipher)
-    val start = System.currentTimeMillis()
     encryption.encrypt()
     val diff = System.currentTimeMillis() - start
     encryption.close()
